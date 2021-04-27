@@ -1,0 +1,151 @@
+
+v1.1.0 (Aug. 26, 2020)
+=================
+- Better handling of UI layout for multiple displays of unmatched DPI.
+- Show hotkeys in button tooltips.
+- Fix a rare crash which occurs at startup due to language path problem. 
+- Prevent multiple instances of gInk.
+- Prevent multiple options windows.
+- Fix Alt+F4 causing unwanted behavior.
+- Spanish (Latin America) language.
+
+v1.0.8 (Mar. 25, 2020)
+=================
+- Jump to the snapshot file when clicking the Windows tip balloon after taking a snapshot.
+- Less CPU usage when dragging to take a snapshot.
+- Fix a rare crash which occurs upon selecting eraser.
+- Fix a rare crash which occurs at startup due to the language folder not found.
+- Russian language.
+
+v1.0.7 (Feb. 8, 2020)
+=================
+- French language.
+- Italian language.
+
+v1.0.6 (Feb. 2, 2020)
+=================
+- German language.
+- Traditional Chinese language.
+
+v1.0.5 (Dec. 24, 2019)
+=================
+- Slightly reduce the size of canvas to unblock mouse interaction with hidden (as well as non-hidden) windows taskbar.
+- Polish language. 
+- Czech language.
+
+v1.0.4 (Nov. 1, 2019)
+=================
+- Portuguese language.
+
+v1.0.3 (Oct. 19, 2019)
+=================
+- Fix a hotkey bug.
+
+v1.0.2 (Oct. 18, 2019)
+=================
+- Thai language.
+- Japanese language.
+
+v1.0.1 (Oct. 10, 2019)
+=================
+- Slovak language.
+
+v1.0.0 (Oct. 9, 2019)
+=================
+- Support localization.
+
+v0.6.0 (Jun. 30, 2019)
+=================
+- Add hotkey options for pens and tools.
+- Add a button to pan (move) inks.
+- Add a button to temporarily hide inks.
+- Add an option to enable pen and tool hotkeys in mouse pointer mode.
+- Allow dragging the toolbar (default is off, experimental).
+- Fix a visual bug on rim of semi-transparent inks.
+- Fix missing inks around the toolbar when the toolbar is moving. 
+- Fix disappearing and random appearing of small tail of inks.
+- Fix the default position of the toolbar when the Windows taskbar is on top of screen.
+- The global hotkey now switches between mouse pointer mode and the last used pen.
+
+v0.5.4 (Dec. 18, 2018)
+=================
+- Fix pointer mode on specific multiple display configurations.
+- Hide forms from alt-tab switcher (contributed by kohanyirobert).
+
+v0.5.3 (Oct. 6, 2018)
+=================
+- Fix eraser for touchscreen and stylus.
+
+v0.5.2 (Sep. 24, 2018)
+=================
+- Fix snapshot on specific multiple display configurations (thanks to pubpub-zz).
+- Fix some multiple display related issues (thanks to pubpub-zz).
+- Add an option in config.ini to immediately close after snapshot (contributed by pubpub-zz).
+
+v0.5.1 (Jun. 29, 2018)
+=================
+- Add a pen-tip mouse cursor as an option when drawing.
+- Fix dragging on pen width panel.
+
+v0.5.0 (May. 30, 2018)
+=================
+- Add options window.
+- Add a global pen width control panel which, if enabled, overrides width setting of each pen.
+- Add hotkeys for each tool during drawing (contributed by MrBricodage).
+- Add a crosshair mouse cursor during taking snapshot.
+- Save undo history when exit drawing, for restoring inks after accidental exit.
+- Add a new visual tell of which pen is selected.
+
+v0.4.1 (Mar. 13, 2017)
+=================
+- Change default pen colors.
+- Fix tray icon size.
+
+v0.4.0 (Jan. 3, 2017)
+=================
+- Multiple level undo (new feature).
+- Save snapshots to %USERPROFILE%/Pictures/gInk (new feature).
+- Show a balloon for browsing the snapshot file location.
+- Change pen icons.
+- Fix incorrect snapshot area when the DPI setting is not at 100%.
+- Fix a crash that occurs rarely at the first stroke.
+
+v0.3.3 (Jul. 10, 2016)
+=================
+- Change system tray icon size.
+- Do not quit drawing after snapshot if there are inks.
+
+v0.3.2 (Feb. 1, 2016)
+=================
+- Click through mode has a dedicated button now.
+- Add two new pens, to a total of five.
+- Add an entry to pen settings.
+
+v0.3.1 (Feb. 1, 2016)
+=================
+- Fix various minor graphical glitches.
+
+v0.3.0 (Feb. 1, 2016)
+=================
+- Click through mode (new feature), triggered when docked.
+
+v0.2.2 (Jan. 18, 2016)
+=================
+- Fix slowness and delay when there are too many inks.
+
+v0.2.1 (Jan. 17, 2016)
+=================
+- Fix snapshot not capturing inks in windows 7.
+
+v0.2.0 (Jan. 17, 2016)
+=================
+- Snapshot to clipboard (new feature).
+- Dock (new feature).
+
+v0.1.1 (Jan. 17, 2016)
+=================
+- CPU usage greatly reduced when drawing.
+
+v0.1 (Jan. 15, 2016)
+=================
+- First alpha release.
