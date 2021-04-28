@@ -32,9 +32,6 @@ OptionsTabPens = "Perá"
 OptionsTabHotkeys = "Klávesové skratky"
 
 OptionsGeneralLanguage = "Jazyk"
-OptionsGeneralCanvascursor = "Kurzor pera"
-OptionsGeneralCanvascursorArrow = "Šípka"
-OptionsGeneralCanvascursorPentip = "Kruh"
 OptionsGeneralSnapshotsavepath = "Fotky obrazovky do:"
 OptionsGeneralWhitetrayicon = "Použiť bielu ikonu"
 OptionsGeneralAllowdragging = "Povoliť premiestňovanie panela"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Globálne klávesové skratky (začne písanie, prepína
 OptionsHotkeysEnableinpointer = "Povoliť všetky tieto klávesové skratky, keď je zapnutý kurzor myši (môže spôsobiť problémy)"
 
 NotificationSnapshot = "Fotka obrazovky uložená. Pre zobrazenie kliknite sem."
+MsgShouldExit = "Ukončite režim označovania a pokračujte"

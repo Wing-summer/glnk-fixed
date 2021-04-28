@@ -33,10 +33,13 @@ namespace gInk
         public string OptionsTabHotkeys = "Hotkeys";
 
         public string OptionsGeneralLanguage = "Language";
+
         //public string OptionsGeneralCanvascursor = "Canvus cursor";
-        public string OptionsGeneralCanvascursorArrow = "Arrow";
-        public string OptionsGeneralCanvascursorPentip = "Pen tip";
+        //public string OptionsGeneralCanvascursorArrow = "Arrow";
+
+        //public string OptionsGeneralCanvascursorPentip = "Pen tip";
         public string OptionsGeneralSnapshotsavepath = "Snapshot save path";
+
         public string OptionsGeneralWhitetrayicon = "Use white tray icon";
         public string OptionsGeneralAllowdragging = "Allow dragging toolbar";
         public string OptionsGeneralNotePenwidth = "Note: pen width panel overides each individual pen width settings";
@@ -55,6 +58,7 @@ namespace gInk
         public string OptionsHotkeysEnableinpointer = "Enable all following hotkeys in mouse pointer mode (may cause a mess)";
 
         public string NotificationSnapshot = "Snapshot saved. Click here to browse snapshots.";
+        public string MsgShouldExit = "Please exit annotation mode and continue";
 
         public Local()
         {

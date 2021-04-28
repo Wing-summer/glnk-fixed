@@ -32,9 +32,6 @@ OptionsTabPens = "Kalemler"
 OptionsTabHotkeys = "Kısayol Tuşları"
 
 OptionsGeneralLanguage = "Dil"
-OptionsGeneralCanvascursor = "Tuval imleci"
-OptionsGeneralCanvascursorArrow = "Ok"
-OptionsGeneralCanvascursorPentip = "Kalem ucu"
 OptionsGeneralSnapshotsavepath = "Anlık ekran görüntüsü kaydetme yolu"
 OptionsGeneralWhitetrayicon = "Beyaz tepsi simgesini kullan"
 OptionsGeneralAllowdragging = "Araç çubuğunun sürüklenmesine izin ver"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Global kısayol tuşu (çizim modunu başlatın, çizim 
 OptionsHotkeysEnableinpointer = "Fare işaretçisi modunda aşağıdaki tüm kısayol tuşlarını etkinleştirin (karışıklığa neden olabilir)"
 
 NotificationSnapshot = "Anlık görüntü kaydedildi. Anlık görüntülere göz atmak için burayı tıklayın."
+MsgShouldExit = "Vă rugăm să ieşiţi din adnotare şi continuaţi"

@@ -13,11 +13,10 @@ namespace gInk
         private IntPtr canvusDc;
         private IntPtr OneStrokeCanvus;
         private IntPtr onestrokeDc;
-        private IntPtr blankcanvusDc=IntPtr.Zero;
+        private IntPtr blankcanvusDc = IntPtr.Zero;
         private Graphics gCanvus;
         public Graphics gOneStrokeCanvus;
 
-        //Bitmap ScreenBitmap;
         private IntPtr hScreenBitmap;
 
         private IntPtr memscreenDc;
@@ -42,7 +41,7 @@ namespace gInk
             }
         }
 
-        public DateTime TickStartTime1 { get => TickStartTime; set => TickStartTime = value; }
+        public DateTime TickStartTime1 { get; set; }
 
         public FormDisplay(Root root)
         {
@@ -51,30 +50,18 @@ namespace gInk
 
             Left = SystemInformation.VirtualScreen.Left;
             Top = SystemInformation.VirtualScreen.Top;
-            //int targetbottom = 0;
-            //foreach (Screen screen in Screen.AllScreens)
-            //{
-            //	if (screen.WorkingArea.Bottom > targetbottom)
-            //		targetbottom = screen.WorkingArea.Bottom;
-            //}
-            //int virwidth = SystemInformation.VirtualScreen.Width;
-            //this.Width = virwidth;
-            //this.Height = targetbottom - this.Top;
             Width = SystemInformation.VirtualScreen.Width;
             Height = SystemInformation.VirtualScreen.Height - 2;
 
             Bitmap InitCanvus = new Bitmap(Width, Height);
             Canvus = InitCanvus.GetHbitmap(Color.FromArgb(0));
             OneStrokeCanvus = InitCanvus.GetHbitmap(Color.FromArgb(0));
-            //BlankCanvus = InitCanvus.GetHbitmap(Color.FromArgb(0));
 
-            IntPtr screenDc = GetDC(IntPtr.Zero);
-            canvusDc = CreateCompatibleDC(screenDc);
-            SelectObject(canvusDc, Canvus);
-            onestrokeDc = CreateCompatibleDC(screenDc);
-            SelectObject(onestrokeDc, OneStrokeCanvus);
-            //blankcanvusDc = CreateCompatibleDC(screenDc);
-            //SelectObject(blankcanvusDc, BlankCanvus);
+            IntPtr screenDc = WinApi.GetDC(IntPtr.Zero);
+            canvusDc = WinApi.CreateCompatibleDC(screenDc);
+            WinApi.SelectObject(canvusDc, Canvus);
+            onestrokeDc = WinApi.CreateCompatibleDC(screenDc);
+            WinApi.SelectObject(onestrokeDc, OneStrokeCanvus);
             gCanvus = Graphics.FromHdc(canvusDc);
             gCanvus.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceCopy;
             gOneStrokeCanvus = Graphics.FromHdc(onestrokeDc);
@@ -82,15 +69,13 @@ namespace gInk
             if (Root.AutoScroll)
             {
                 hScreenBitmap = InitCanvus.GetHbitmap(Color.FromArgb(0));
-                memscreenDc = CreateCompatibleDC(screenDc);
-                SelectObject(memscreenDc, hScreenBitmap);
+                memscreenDc = WinApi.CreateCompatibleDC(screenDc);
+                WinApi.SelectObject(memscreenDc, hScreenBitmap);
                 screenbits = new byte[50000000];
                 lastscreenbits = new byte[50000000];
             }
-            ReleaseDC(IntPtr.Zero, screenDc);
+            WinApi.ReleaseDC(IntPtr.Zero, screenDc);
             InitCanvus.Dispose();
-
-            //this.DoubleBuffered = true;
 
             int gpheight = (int)(Screen.PrimaryScreen.Bounds.Height * Root.ToolbarHeight);
             gpButtonsImage = new Bitmap(2400, gpheight);
@@ -103,12 +88,11 @@ namespace gInk
 
         public void ToTopMostThrough()
         {
-            UInt32 dwExStyle = GetWindowLong(Handle, -20);
-            SetWindowLong(Handle, -20, dwExStyle | 0x00080000);
-            SetWindowPos(Handle, (IntPtr)0, 0, 0, 0, 0, 0x0002 | 0x0001 | 0x0004 | 0x0010 | 0x0020);
-            //SetLayeredWindowAttributes(this.Handle, 0x00FFFFFF, 1, 0x2);
-            SetWindowLong(Handle, -20, dwExStyle | 0x00080000 | 0x00000020);
-            SetWindowPos(Handle, (IntPtr)(-1), 0, 0, 0, 0, 0x0002 | 0x0001 | 0x0010 | 0x0020);
+            uint dwExStyle = WinApi.GetWindowLong(Handle, -20);
+            WinApi.SetWindowLong(Handle, -20, dwExStyle | 0x00080000);
+            WinApi.SetWindowPos(Handle, (IntPtr)0, 0, 0, 0, 0, 0x0002 | 0x0001 | 0x0004 | 0x0010 | 0x0020);
+            WinApi.SetWindowLong(Handle, -20, dwExStyle | 0x00080000 | 0x00000020);
+            WinApi.SetWindowPos(Handle, (IntPtr)(-1), 0, 0, 0, 0, 0x0002 | 0x0001 | 0x0010 | 0x0020);
         }
 
         public void ClearCanvus()
@@ -167,7 +151,6 @@ namespace gInk
             if (exiting)
             {
                 int clearleft = Math.Max(left - 120, gpbl);
-                //gCanvus.FillRectangle(TransparentBrush, clearleft, top, fullwidth * 2, height);
                 gCanvus.FillRectangle(TransparentBrush, clearleft, top, drawwidth, height);
             }
             gCanvus.DrawImage(gpButtonsImage, left, top, new Rectangle(0, 0, drawwidth, height), GraphicsUnit.Pixel);
@@ -208,7 +191,6 @@ namespace gInk
             if (exiting)
             {
                 int clearleft = Math.Max(left - 120, gpbl);
-                //g.FillRectangle(TransparentBrush, clearleft, top, width + 80, height);
                 g.FillRectangle(TransparentBrush, clearleft, top, drawwidth, height);
             }
             g.DrawImage(gpButtonsImage, left, top);
@@ -307,12 +289,12 @@ namespace gInk
 
             if (System.IO.Directory.Exists(snapbasepath))
             {
-                IntPtr screenDc = GetDC(IntPtr.Zero);
+                IntPtr screenDc = WinApi.GetDC(IntPtr.Zero);
 
                 const int VERTRES = 10;
                 const int DESKTOPVERTRES = 117;
-                int LogicalScreenHeight = GetDeviceCaps(screenDc, VERTRES);
-                int PhysicalScreenHeight = GetDeviceCaps(screenDc, DESKTOPVERTRES);
+                int LogicalScreenHeight = WinApi.GetDeviceCaps(screenDc, VERTRES);
+                int PhysicalScreenHeight = WinApi.GetDeviceCaps(screenDc, DESKTOPVERTRES);
                 float ScreenScalingFactor = PhysicalScreenHeight / (float)LogicalScreenHeight;
 
                 rect.X = (int)(rect.X * ScreenScalingFactor);
@@ -324,11 +306,11 @@ namespace gInk
                 Graphics g = Graphics.FromImage(tempbmp);
                 g.Clear(Color.Red);
 
-                IntPtr hDest = CreateCompatibleDC(screenDc);
+                IntPtr hDest = WinApi.CreateCompatibleDC(screenDc);
                 IntPtr hBmp = tempbmp.GetHbitmap();
-                SelectObject(hDest, hBmp);
-                bool b = BitBlt(hDest, 0, 0, rect.Width, rect.Height, screenDc, rect.Left, rect.Top, (uint)(CopyPixelOperation.SourceCopy | CopyPixelOperation.CaptureBlt));
-                tempbmp = Bitmap.FromHbitmap(hBmp);
+                WinApi.SelectObject(hDest, hBmp);
+                bool b = WinApi.BitBlt(hDest, 0, 0, rect.Width, rect.Height, screenDc, rect.Left, rect.Top, (uint)(CopyPixelOperation.SourceCopy | CopyPixelOperation.CaptureBlt));
+                tempbmp = Image.FromHbitmap(hBmp);
 
                 if (!b)
                 {
@@ -346,9 +328,9 @@ namespace gInk
                 tempbmp.Save(Root.SnapshotFileFullPath, System.Drawing.Imaging.ImageFormat.Png);
 
                 tempbmp.Dispose();
-                DeleteObject(hBmp);
-                ReleaseDC(IntPtr.Zero, screenDc);
-                DeleteDC(hDest);
+                WinApi.DeleteObject(hBmp);
+                WinApi.ReleaseDC(IntPtr.Zero, screenDc);
+                WinApi.DeleteDC(hDest);
 
                 Root.UponBalloonSnap = true;
             }
@@ -356,12 +338,12 @@ namespace gInk
 
         public int Test()
         {
-            IntPtr screenDc = GetDC(IntPtr.Zero);
+            IntPtr screenDc = WinApi.GetDC(IntPtr.Zero);
 
             // big time consuming, but not CPU consuming
-            BitBlt(memscreenDc, Width / 4, 0, Width / 2, Height, screenDc, Width / 4, 0, 0x00CC0020);
+            WinApi.BitBlt(memscreenDc, Width / 4, 0, Width / 2, Height, screenDc, Width / 4, 0, 0x00CC0020);
             // <1% CPU
-            GetBitmapBits(hScreenBitmap, Width * Height * 4, screenbits);
+            WinApi.GetBitmapBits(hScreenBitmap, Width * Height * 4, screenbits);
 
             int dj;
             int maxidpixels = 0;
@@ -380,47 +362,33 @@ namespace gInk
                     N2(istart - 10, j + dj);
                     for (int i = istart; i < iend; i += 10)
                     {
-                        //uint l = Lnext();
-                        //uint n1 = Nnext1();
-                        //uint n2 = Nnext2();
-                        //if (l != n1)
-                        //{
-                        //	chdpixels++;
-                        //	if (l == n2)
-                        //		idpixels++;
-                        //}
-
                         if (Lnext() == Nnext2())
                             idpixels++;
                     }
                 }
 
-                //float idchdrio = (float)idpixels / chdpixels;
                 if (idpixels > maxidpixels)
-                //if (idchdrio > maxidchdrio)
                 {
-                    //maxidchdrio = idchdrio;
                     maxidpixels = idpixels;
                     maxdj = dj;
                 }
             }
 
-            //if (maxidchdrio < 0.1 || maxidpixels < 30)
             if (maxidpixels < 100)
                 maxdj = 0;
 
             // 2% CPU
             IntPtr pscreenbits = Marshal.UnsafeAddrOfPinnedArrayElement(screenbits, (int)(Width * Height * 4 * 0.375));
             IntPtr plastscreenbits = Marshal.UnsafeAddrOfPinnedArrayElement(lastscreenbits, (int)(Width * Height * 4 * 0.375));
-            memcpy(plastscreenbits, pscreenbits, Width * Height * 4 / 4);
+            WinApi.memcpy(plastscreenbits, pscreenbits, Width * Height * 4 / 4);
 
-            ReleaseDC(IntPtr.Zero, screenDc);
+            WinApi.ReleaseDC(IntPtr.Zero, screenDc);
             return maxdj;
         }
 
         public void UpdateFormDisplay(bool draw)
         {
-            IntPtr screenDc = GetDC(IntPtr.Zero);
+            IntPtr screenDc = WinApi.GetDC(IntPtr.Zero);
 
             //Display-rectangle
             Size size = new Size(Width, Height);
@@ -428,39 +396,27 @@ namespace gInk
             Point topPos = new Point(Left, Top);
 
             //Set up blending options
-            BLENDFUNCTION blend = new BLENDFUNCTION();
-            blend.BlendOp = AC_SRC_OVER;
+            WinApi.BLENDFUNCTION blend = new WinApi.BLENDFUNCTION();
+            blend.BlendOp = WinApi.AC_SRC_OVER;
             blend.BlendFlags = 0;
             blend.SourceConstantAlpha = 255;  // additional alpha multiplier to the whole image. value 255 means multiply with 1.
-            blend.AlphaFormat = AC_SRC_ALPHA;
+            blend.AlphaFormat = WinApi.AC_SRC_ALPHA;
 
             if (draw)
-                UpdateLayeredWindow(Handle, screenDc, ref topPos, ref size, canvusDc, ref pointSource, 0, ref blend, ULW_ALPHA);
+                WinApi.UpdateLayeredWindow(Handle, screenDc, ref topPos, ref size, canvusDc, ref pointSource, 0, ref blend, WinApi.ULW_ALPHA);
             else
-                UpdateLayeredWindow(Handle, screenDc, ref topPos, ref size, blankcanvusDc, ref pointSource, 0, ref blend, ULW_ALPHA);
+                WinApi.UpdateLayeredWindow(Handle, screenDc, ref topPos, ref size, blankcanvusDc, ref pointSource, 0, ref blend, WinApi.ULW_ALPHA);
 
             //Clean-up
-            ReleaseDC(IntPtr.Zero, screenDc);
+            WinApi.ReleaseDC(IntPtr.Zero, screenDc);
         }
 
         private int stackmove = 0;
         private int Tick = 0;
-        private DateTime TickStartTime;
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             Tick++;
-
-            /*
-			if (Tick == 1)
-				TickStartTime = DateTime.Now;
-			else if (Tick % 60 == 0)
-			{
-				Console.WriteLine(60 / (DateTime.Now - TickStartTime).TotalMilliseconds * 1000);
-				TickStartTime = DateTime.Now;
-			}
-			*/
-
             if (Root.UponAllDrawingUpdate)
             {
                 ClearCanvus();
@@ -477,7 +433,6 @@ namespace gInk
                     System.Threading.Thread.Sleep(200);
                 ClearCanvus();
                 DrawStrokes();
-                //DrawButtons(false);
                 UpdateFormDisplay(true);
                 SnapShot(Root.SnappingRect);
                 Root.UponTakingSnap = false;
@@ -505,10 +460,6 @@ namespace gInk
             }
             else if (Root.FormCollection.IC.CollectingInk && Root.EraserMode == false && Root.InkVisible)
             {
-                //ClearCanvus();
-                //DrawStrokes();
-                //DrawButtons(false);
-                //UpdateFormDisplay();
                 if (Root.FormCollection.IC.Ink.Strokes.Count > 0)
                 {
                     Stroke stroke = Root.FormCollection.IC.Ink.Strokes[Root.FormCollection.IC.Ink.Strokes.Count - 1];
@@ -519,7 +470,7 @@ namespace gInk
                         Point rb = new Point(box.Right + 1, box.Bottom + 1);
                         Root.FormCollection.IC.Renderer.InkSpaceToPixel(gCanvus, ref lt);
                         Root.FormCollection.IC.Renderer.InkSpaceToPixel(gCanvus, ref rb);
-                        BitBlt(canvusDc, lt.X, lt.Y, rb.X - lt.X, rb.Y - lt.Y, onestrokeDc, lt.X, lt.Y, (uint)CopyPixelOperation.SourceCopy);
+                        WinApi.BitBlt(canvusDc, lt.X, lt.Y, rb.X - lt.X, rb.Y - lt.Y, onestrokeDc, lt.X, lt.Y, (uint)CopyPixelOperation.SourceCopy);
                         Root.FormCollection.IC.Renderer.Draw(gCanvus, stroke, Root.FormCollection.IC.DefaultDrawingAttributes);
                     }
                     UpdateFormDisplay(true);
@@ -576,87 +527,13 @@ namespace gInk
 
         private void FormDisplay_FormClosed(object sender, FormClosedEventArgs e)
         {
-            DeleteObject(Canvus);
-            //DeleteObject(BlankCanvus);
-            DeleteDC(canvusDc);
+            WinApi.DeleteObject(Canvus);
+            WinApi.DeleteDC(canvusDc);
             if (Root.AutoScroll)
             {
-                DeleteObject(hScreenBitmap);
-                DeleteDC(memscreenDc);
+                WinApi.DeleteObject(hScreenBitmap);
+                WinApi.DeleteDC(memscreenDc);
             }
         }
-
-        [DllImport("user32.dll")]
-        private static extern IntPtr GetDC(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
-        private static extern bool ReleaseDC(IntPtr hWnd, IntPtr hDC);
-
-        [DllImport("gdi32.dll", EntryPoint = "DeleteDC")]
-        public static extern bool DeleteDC([In] IntPtr hdc);
-
-        [DllImport("gdi32.dll", EntryPoint = "CreateCompatibleDC", SetLastError = true)]
-        private static extern IntPtr CreateCompatibleDC([In] IntPtr hdc);
-
-        [DllImport("gdi32.dll", EntryPoint = "SelectObject")]
-        public static extern IntPtr SelectObject([In] IntPtr hdc, [In] IntPtr hgdiobj);
-
-        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool DeleteObject([In] IntPtr hObject);
-
-        [DllImport("user32.dll", ExactSpelling = true, SetLastError = true)]
-        private static extern bool UpdateLayeredWindow(IntPtr hwnd, IntPtr hdcDst, ref Point pptDst, ref Size psize, IntPtr hdcSrc, ref Point pptSrc, uint crKey, [In] ref BLENDFUNCTION pblend, uint dwFlags);
-
-        [DllImport("gdi32.dll")]
-        public static extern bool BitBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, uint dwRop);
-
-        [DllImport("gdi32.dll")]
-        public static extern bool StretchBlt(IntPtr hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, IntPtr hdcSrc, int nXSrc, int nYSrc, int nWidthSrc, int nHeightSrc, long dwRop);
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct BLENDFUNCTION
-        {
-            public byte BlendOp;
-            public byte BlendFlags;
-            public byte SourceConstantAlpha;
-            public byte AlphaFormat;
-
-            public BLENDFUNCTION(byte op, byte flags, byte alpha, byte format)
-            {
-                BlendOp = op;
-                BlendFlags = flags;
-                SourceConstantAlpha = alpha;
-                AlphaFormat = format;
-            }
-        }
-
-        private const int ULW_ALPHA = 2;
-        private const int AC_SRC_OVER = 0x00;
-        private const int AC_SRC_ALPHA = 0x01;
-
-        [DllImport("user32.dll")]
-        private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern UInt32 GetWindowLong(IntPtr hWnd, int nIndex);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, UInt32 dwNewLong);
-
-        [DllImport("user32.dll")]
-        public extern static bool SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
-
-        [DllImport("gdi32.dll")]
-        private static extern int GetBitmapBits(IntPtr hbmp, int cbBuffer, [Out] byte[] lpvBits);
-
-        [DllImport("gdi32.dll")]
-        private static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
-
-        [DllImport("gdi32.dll")]
-        private static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
-
-        [DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
-        public static extern IntPtr memcpy(IntPtr dest, IntPtr src, int count);
     }
 }

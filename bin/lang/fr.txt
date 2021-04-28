@@ -32,9 +32,6 @@ OptionsTabPens = "Stylos"
 OptionsTabHotkeys = "Raccourcis"
 
 OptionsGeneralLanguage = "Langage"
-OptionsGeneralCanvascursor = "Type de curseur"
-OptionsGeneralCanvascursorArrow = "Flèche"
-OptionsGeneralCanvascursorPentip = "Pointe de stylo"
 OptionsGeneralSnapshotsavepath = "Chemin des captures"
 OptionsGeneralWhitetrayicon = "Utiliser une icône blanche en barre des tâches"
 OptionsGeneralAllowdragging = "Autoriser barre d'outils flottante"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Raccourci général (débuter un dessin, basculer entre 
 OptionsHotkeysEnableinpointer = "Activer tous les raccourcis en mode curseur de souris (peut poser problème)"
 
 NotificationSnapshot = "Capture sauvegardée. Cliquez ici pour parcourir les captures."
+MsgShouldExit = "Veuillez quitter le mode d'étiquetage et continuer"

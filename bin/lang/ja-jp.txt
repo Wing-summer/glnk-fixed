@@ -32,9 +32,6 @@ OptionsTabPens = "ペン設定"
 OptionsTabHotkeys = "Hotkeys"
 
 OptionsGeneralLanguage = "言語"
-OptionsGeneralCanvascursor = "カーソル表示"
-OptionsGeneralCanvascursorArrow = "矢印"
-OptionsGeneralCanvascursorPentip = "ペン先"
 OptionsGeneralSnapshotsavepath = "スナップショット保存場所"
 OptionsGeneralWhitetrayicon = "トレイアイコンの色を白くする（デフォルト赤）"
 OptionsGeneralAllowdragging = "ツールバーを移動できるようにする"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "グローバルhotkey (描画モードを起動, 描画�
 OptionsHotkeysEnableinpointer = "以下全てのhotkeyをマウス操作モード中に有効にする (大変なことになるかも)"
 
 NotificationSnapshot = "スナップショットが保存されました. ここをクリックして参照できます."
+MsgShouldExit = "ラベリングモードを終了して続行してください"

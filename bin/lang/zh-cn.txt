@@ -32,9 +32,6 @@ OptionsTabPens = "笔"
 OptionsTabHotkeys = "快捷键"
 
 OptionsGeneralLanguage = "语言"
-OptionsGeneralCanvascursor = "鼠标光标"
-OptionsGeneralCanvascursorArrow = "箭头"
-OptionsGeneralCanvascursorPentip = "笔尖"
 OptionsGeneralSnapshotsavepath = "截图存储路径"
 OptionsGeneralWhitetrayicon = "系统托盘上使用白色图标"
 OptionsGeneralAllowdragging = "允许拖动笔迹工具栏"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "全局快捷键 (开始绘制笔迹，切换绘制模式
 OptionsHotkeysEnableinpointer = "允许在鼠标操作模式下使用下列快捷键"
 
 NotificationSnapshot = "截图已保存，点此查看"
+MsgShouldExit = "请退出标注模式后继续"

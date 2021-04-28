@@ -32,9 +32,6 @@ OptionsTabPens = "Pisaki"
 OptionsTabHotkeys = "Skróty klawiaturowe"
 
 OptionsGeneralLanguage = "Język dla użytkownika"
-OptionsGeneralCanvascursor = "Wskaźnik do rysowania"
-OptionsGeneralCanvascursorArrow = "Duża strzałka"
-OptionsGeneralCanvascursorPentip = "Końcówka pisaka" 
 OptionsGeneralSnapshotsavepath = "Miejsce na zrzuty ekranu"
 OptionsGeneralWhitetrayicon = "Biała ikona w zasobniku"
 OptionsGeneralAllowdragging = "Pozwól na przesuwanie paska z narzędziami"
@@ -55,3 +52,4 @@ OptionsHotkeysglobal = "Systemowy skrót klawiaturowy (zaczyna rysowanie, przeł
 OptionsHotkeysEnableinpointer = "Włącz te skróty klawiaturowe przy pracy ze wskaźnikiem myszy (może to powodować błędy)"
 
 NotificationSnapshot = "Zrzut ekranu zapisany. Kliknij tu, aby przeglądać."
+MsgShouldExit = "Wyjdź z trybu etykietowania i kontynuuj"

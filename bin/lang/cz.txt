@@ -32,9 +32,6 @@ OptionsTabPens = "Pera"
 OptionsTabHotkeys = "Klávesové zkratky"
 
 OptionsGeneralLanguage = "Jazyk"
-OptionsGeneralCanvascursor = "Kurzor pera"
-OptionsGeneralCanvascursorArrow = "Šipka"
-OptionsGeneralCanvascursorPentip = "Kruh"
 OptionsGeneralSnapshotsavepath = "Sejmuté obrazovky:"
 OptionsGeneralWhitetrayicon = "Použít bílou ikonu místo červené"
 OptionsGeneralAllowdragging = "Povolit přemísťování panelu"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Globální klávesová zkratka (přepíná mezi kurzorem
 OptionsHotkeysEnableinpointer = "Používat všechny tyto klávesové zkratky, když je zapnutý kurzor myši (může působit potíže)"
 
 NotificationSnapshot = "Sejmutá obrazovka byla uložena. Pro zobrazení klikněte sem."
+MsgShouldExit = "Ukončete režim označování a pokračujte"

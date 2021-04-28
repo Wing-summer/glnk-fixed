@@ -32,9 +32,6 @@ OptionsTabPens = "Penne"
 OptionsTabHotkeys = "Scorciatoie"
 
 OptionsGeneralLanguage = "Linguaggio"
-OptionsGeneralCanvascursor = "Tipo di cursore"
-OptionsGeneralCanvascursorArrow = "Freccia"
-OptionsGeneralCanvascursorPentip = "Punta della penna"
 OptionsGeneralSnapshotsavepath = "Destinazione Schermate"
 OptionsGeneralWhitetrayicon = "Usa icona bianca della  barra delle applicazioni"
 OptionsGeneralAllowdragging = "Consenti di spostare la barra degli strumenti"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Scorciatoia globale (comincia a disegnare, scambia tra u
 OptionsHotkeysEnableinpointer = "Abilita tutte le seguenti scorciatoie nella modalità puntatore mouse (potrebbe causare dei problemi)"
 
 NotificationSnapshot = "Schermata salvata. Clicca qui per sfogliare le schermate."
+MsgShouldExit = "Esci dalla modalità di etichettatura e continua"

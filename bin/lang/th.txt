@@ -32,9 +32,6 @@ OptionsTabPens = "ปากกา"
 OptionsTabHotkeys = "แป้นคีย์ลัด"
 
 OptionsGeneralLanguage = "ภาษา"
-OptionsGeneralCanvascursor = "รูปแบบของตัวชี้เม้าส์"
-OptionsGeneralCanvascursorArrow = "หัวเมาส์ แบบลูกศร"
-OptionsGeneralCanvascursorPentip = "หัวเมาส์ แบบปากกา"
 OptionsGeneralSnapshotsavepath = "ตำแหน่งที่เก็บภาพที่จับหน้าจอ"
 OptionsGeneralWhitetrayicon = "ใช้ไอคอนสีขาวที่ถาดล่าง"
 OptionsGeneralAllowdragging = "อนุญาติให้ลากแถบเครื่องมือได้"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "คีย์ลัดทั้งหมด (เรีย
 OptionsHotkeysEnableinpointer = "เปิดใช้งานปุ่มคีย์ลัดทั้งหมด (อาจจะท่านงง ๆ นิดหน่อย)"
 
 NotificationSnapshot = "บันทึกภาพแล้ว. คลิ๊กที่นี้เพื่อเรียกดูภาพ"
+MsgShouldExit = "โปรดออกจากโหมดการติดฉลากและดำเนินการต่อ"

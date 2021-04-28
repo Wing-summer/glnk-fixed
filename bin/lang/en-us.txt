@@ -32,9 +32,6 @@ OptionsTabPens = "Pens"
 OptionsTabHotkeys = "Hotkeys"
 
 OptionsGeneralLanguage = "Language"
-OptionsGeneralCanvascursor = "Canvus cursor"
-OptionsGeneralCanvascursorArrow = "Arrow"
-OptionsGeneralCanvascursorPentip = "Pen tip"
 OptionsGeneralSnapshotsavepath = "Snapshot save path"
 OptionsGeneralWhitetrayicon = "Use white tray icon"
 OptionsGeneralAllowdragging = "Allow dragging toolbar"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Global hotkey (starts drawing, switches between mouse po
 OptionsHotkeysEnableinpointer = "Enable all following hotkeys in mouse pointer mode (may cause a mess)"
 
 NotificationSnapshot = "Snapshot saved. Click here to browse snapshots."
+MsgShouldExit = "Please exit annotation mode and continue"

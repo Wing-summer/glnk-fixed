@@ -63,8 +63,10 @@ namespace gInk
         public bool AutoScroll;
         public bool WhiteTrayIcon;
         public string SnapshotBasePath;
+
         //public int CanvasCursor = 0;
         public bool AllowDraggingToolbar = true;
+
         public bool AllowHotkeyInPointerMode = true;
         public int gpButtonsLeft, gpButtonsTop;
 
@@ -122,7 +124,7 @@ namespace gInk
         public int LastPen = 1;
         public int GlobalPenWidth = 80;
         public bool gpPenWidthVisible = false;
-        public string SnapshotFileFullPath = ""; // used to record the last snapshot file name, to select it when the balloon is clicked
+        public string SnapshotFileFullPath = string.Empty; // used to record the last snapshot file name, to select it when the balloon is clicked
 
         public Root()
         {
@@ -162,10 +164,7 @@ namespace gInk
 
         private void TrayIcon_BalloonTipClicked(object sender, EventArgs e)
         {
-            //string snapbasepath = SnapshotBasePath;
-            //snapbasepath = Environment.ExpandEnvironmentVariables(snapbasepath);
-            //System.Diagnostics.Process.Start(snapbasepath);
-            string fullpath = System.IO.Path.GetFullPath(SnapshotFileFullPath);
+            var fullpath = Path.GetFullPath(SnapshotFileFullPath);
             System.Diagnostics.Process.Start("explorer.exe", string.Format("/select,\"{0}\"", fullpath));
         }
 
@@ -190,7 +189,6 @@ namespace gInk
             if (FormDisplay != null || FormCollection != null)
                 return;
 
-            //Docked = false;
             FormDisplay = new FormDisplay(this);
             FormCollection = new FormCollection(this);
             FormButtonHitter = new FormButtonHitter(this);
@@ -218,8 +216,6 @@ namespace gInk
                 UndoDepth = 0;
                 UndoP = 0;
             }
-
-            //UponUndoStrokes = FormCollection.IC.Ink.Clone();
         }
 
         public void StopInk()
@@ -227,8 +223,6 @@ namespace gInk
             FormCollection.Close();
             FormDisplay.Close();
             FormButtonHitter.Close();
-            //FormCollection.Dispose();
-            //FormDisplay.Dispose();
             GC.Collect();
             FormCollection = null;
             FormDisplay = null;
@@ -472,15 +466,15 @@ namespace gInk
 
             FileStream fini = new FileStream(file, FileMode.Open);
             StreamReader srini = new StreamReader(fini);
-            string sLine = "";
-            string sName = "", sPara = "";
+            string sLine = string.Empty;
+            string sName = string.Empty, sPara = string.Empty;
             while (sLine != null)
             {
                 sLine = srini.ReadLine();
                 if
                 (
                     sLine != null &&
-                    sLine != "" &&
+                    sLine != string.Empty &&
                     sLine.Substring(0, 1) != "-" &&
                     sLine.Substring(0, 1) != "%" &&
                     sLine.Substring(0, 1) != "'" &&
@@ -680,13 +674,6 @@ namespace gInk
                             if (float.TryParse(sPara, out tempf))
                                 ToolbarHeight = tempf;
                             break;
-
-                        //case "CANVAS_CURSOR":
-                        //    if (sPara == "0")
-                        //        CanvasCursor = 0;
-                        //    else if (sPara == "1")
-                        //        CanvasCursor = 1;
-                        //    break;
                     }
                 }
             }
@@ -702,20 +689,20 @@ namespace gInk
 
             FileStream fini = new FileStream(file, FileMode.Open);
             StreamReader srini = new StreamReader(fini);
-            string sLine = "";
-            string sNameO = "";
-            string sName = "", sPara = "";
+            string sLine = string.Empty;
+            string sNameO = string.Empty;
+            string sName = string.Empty, sPara = string.Empty;
 
             List<string> writelines = new List<string>();
 
             while (sLine != null)
             {
-                sPara = "";
+                sPara = string.Empty;
                 sLine = srini.ReadLine();
                 if
                 (
                     sLine != null &&
-                    sLine != "" &&
+                    sLine != string.Empty &&
                     sLine.Substring(0, 1) != "-" &&
                     sLine.Substring(0, 1) != "%" &&
                     sLine.Substring(0, 1) != "'" &&
@@ -919,13 +906,9 @@ namespace gInk
                         case "TOOLBAR_HEIGHT":
                             sPara = ToolbarHeight.ToString();
                             break;
-
-                        //case "CANVAS_CURSOR":
-                        //    sPara = CanvasCursor.ToString();
-                        //    break;
                     }
                 }
-                if (sPara != "")
+                if (sPara != string.Empty)
                     writelines.Add(sNameO + "= " + sPara);
                 else if (sLine != null)
                     writelines.Add(sLine);
@@ -946,20 +929,19 @@ namespace gInk
             FormAbout.Show();
         }
 
-        /*
-		private void OnPenSetting(object sender, EventArgs e)
-		{
-			System.Diagnostics.Process.Start("notepad.exe", "pens.ini");
-		}
-		*/
-
         private void OnOptions(object sender, EventArgs e)
         {
             if (FormOptions != null)
+            {
+                FormOptions.BringToFront();
+                FormOptions.Focus();
                 return;
+            }
             if (FormDisplay != null || FormCollection != null)
+            {
+                MessageBox.Show(Local.MsgShouldExit, "glnk", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
-
+            }
             ReadOptions("pens.ini");
             ReadOptions("config.ini");
             ReadOptions("hotkeys.ini");

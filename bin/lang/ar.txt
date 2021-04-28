@@ -32,9 +32,6 @@ OptionsTabPens = "الاقلام"
 OptionsTabHotkeys = "الاختصارات"
 
 OptionsGeneralLanguage = "اللغة"
-OptionsGeneralCanvascursor = "مؤشر الفأرة"
-OptionsGeneralCanvascursorArrow = "مؤشر السهم"
-OptionsGeneralCanvascursorPentip = "مؤشر القلم"
 OptionsGeneralSnapshotsavepath = "مسار حفظ الصور الملتقطة"
 OptionsGeneralWhitetrayicon = "استخدم الايقونة المصغرة البيضاء"
 OptionsGeneralAllowdragging = "السماح بتحريك الشريط "
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Global hotkey  البدء في الرسم,التبديل
 OptionsHotkeysEnableinpointer = "تفعيل جميع  الاختصارات قد يسبب الفوضي"
 
 NotificationSnapshot = "تم حفظ الصورة ،اضغط هنا للعرض في المجلد"
+MsgShouldExit = "الرجاء الخروج من وضع التسمية والمتابعة"

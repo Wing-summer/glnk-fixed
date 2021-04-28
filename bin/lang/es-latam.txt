@@ -32,9 +32,6 @@ OptionsTabPens = "Bolígrafos"
 OptionsTabHotkeys = "Teclas de atajo"
 
 OptionsGeneralLanguage = "Lenguaje"
-OptionsGeneralCanvascursor = "Cursor de lienzo"
-OptionsGeneralCanvascursorArrow = "Flecha"
-OptionsGeneralCanvascursorPentip = "Punta de bolígrafo"
 OptionsGeneralSnapshotsavepath = "Directorio de captura"
 OptionsGeneralWhitetrayicon = "Usar ícono de bandeja blanca"
 OptionsGeneralAllowdragging = "Arrastrar barra de herramientas"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Teclas de atajo global (comienza a dibujar, cambia entre
 OptionsHotkeysEnableinpointer = "Habilita todas las siguientes teclas de atajo en modo apuntador (puede causar un relajo)"
 
 NotificationSnapshot = "Captura guardada. Click acá para visualizar las capturas"
+MsgShouldExit = "Salga del modo de etiquetado y continúe"

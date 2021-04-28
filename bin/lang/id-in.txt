@@ -32,9 +32,6 @@ OptionsTabPens = "Pena"
 OptionsTabHotkeys = "Pintasan"
 
 OptionsGeneralLanguage = "Bahasa"
-OptionsGeneralCanvascursor = "Kursor Kanvas"
-OptionsGeneralCanvascursorArrow = "Arrow"
-OptionsGeneralCanvascursorPentip = "Ujung Pena"
 OptionsGeneralSnapshotsavepath = "Lokasi penyimpanan snapshot"
 OptionsGeneralWhitetrayicon = "Gunakan icon tray putih"
 OptionsGeneralAllowdragging = "Izinkan bilah alat seret"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Tombol pintas global (mulai menggambar, beralih antara p
 OptionsHotkeysEnableinpointer = "Aktifkan semua hotkey berikut dalam mode penunjuk mouse (dapat menyebabkan kekacauan)"
 
 NotificationSnapshot = "Snapshot disimpan. Klik di sini untuk menjelajahi snapshot."
+MsgShouldExit = "Harap keluar dari mode pelabelan dan lanjutkan"

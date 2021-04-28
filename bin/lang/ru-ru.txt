@@ -32,9 +32,6 @@ OptionsTabPens = "Кисти"
 OptionsTabHotkeys = "Сочетания клавиш"
 
 OptionsGeneralLanguage = "Язык"
-OptionsGeneralCanvascursor = "Формат отображения указателя"
-OptionsGeneralCanvascursorArrow = "Курсор (стрелка)"
-OptionsGeneralCanvascursorPentip = "Кисть"
 OptionsGeneralSnapshotsavepath = "Путь к папке со снимками экрана"
 OptionsGeneralWhitetrayicon = "Использовать белую иконку на панели задач"
 OptionsGeneralAllowdragging = "Разрешить перемещение панели инструментов"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Основное сочетание клавиш (вкл
 OptionsHotkeysEnableinpointer = "Сделать доступными все перечисленные ниже сочетания клавиш в режиме указателя мыши (может привести к проблемам с дублированием сочетаний клавиш в другом ПО)"
 
 NotificationSnapshot = "Снимок экрана сохранен. Нажмите для перехода к снимкам экрана."
+MsgShouldExit = "Пожалуйста, выйдите из режима маркировки и продолжите"

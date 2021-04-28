@@ -32,9 +32,6 @@ OptionsTabPens = "Canetas"
 OptionsTabHotkeys = "Teclas atalho"
 
 OptionsGeneralLanguage = "Linguagem"
-OptionsGeneralCanvascursor = "Tipo ponteiro"
-OptionsGeneralCanvascursorArrow = "Seta"
-OptionsGeneralCanvascursorPentip = "Ponta caneta"
 OptionsGeneralSnapshotsavepath = "Directoria captura instantânea"
 OptionsGeneralWhitetrayicon = "Usar icon branco na barra tarefas"
 OptionsGeneralAllowdragging = "Permitir arrastar barra de ferramentas"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Tecla de atalho global (inicia o desenho, alterna entre 
 OptionsHotkeysEnableinpointer = "Habilidar todas as teclas de atalho no modo ponteiro do rato (nota: pode ser muito confuso)"
 
 NotificationSnapshot = "Captura de ecrã instantânea salva. Clica para procurar capturas."
+MsgShouldExit = "Saia do modo de rotulagem e continue"

@@ -32,9 +32,6 @@ OptionsTabPens = "Stifte"
 OptionsTabHotkeys = "Tastenkombinationen"
 
 OptionsGeneralLanguage = "Sprache"
-OptionsGeneralCanvascursor = "Zeichenmausanzeige"
-OptionsGeneralCanvascursorArrow = "Pfeil"
-OptionsGeneralCanvascursorPentip = "Stiftspitze"
 OptionsGeneralSnapshotsavepath = "Speicherort für Screenshots"
 OptionsGeneralWhitetrayicon = "Weißes Taskleistenicon verwenden"
 OptionsGeneralAllowdragging = "Verschieben der Werkzeugleiste erlauben"
@@ -54,3 +51,4 @@ OptionsHotkeysglobal = "Zentrale Tastenkombination (Zeichnen starten, Wechseln z
 OptionsHotkeysEnableinpointer = "Im Mauszeigermodus folgende Tastenkombinationen erlauben"
 
 NotificationSnapshot = "Screenshot gespeichert. Hier klicken um auszuwählen."
+MsgShouldExit = "Bitte verlassen Sie den Beschriftungsmodus und fahren Sie fort"
