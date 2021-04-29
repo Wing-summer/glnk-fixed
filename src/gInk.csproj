@@ -160,10 +160,8 @@
     <None Include="cursorred.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="rubber.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="icon_red.ico" />
+    <None Include="rubber.png" />
     <None Include="_null.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

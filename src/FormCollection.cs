@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace gInk
 {
@@ -652,15 +653,15 @@ namespace gInk
                 EnterEraserMode(true);
                 Root.UnPointer();
                 Root.PanMode = false;
-                if (Root.EraserMode)
-                {
-                    cursorred = new System.Windows.Forms.Cursor(Properties.Resources.rubber.Handle);
-                    IC.Cursor = cursorred;
-                }
-                else
-                {
-                    SetPenTipCursor();
-                }
+                //if (Root.EraserMode)
+                //{
+                //    cursorred = new System.Windows.Forms.Cursor(Properties.Resources.rubber.Handle);
+                //    IC.Cursor = cursorred;
+                //}
+                //else
+                //{
+                SetPenTipCursor();
+                //}
                 try
                 {
                     IC.SetWindowInputRectangle(new Rectangle(0, 0, Width, Height));
@@ -729,6 +730,7 @@ namespace gInk
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            IC.DefaultDrawingAttributes.Width = Root.GlobalPenWidth;
         }
 
         public void btDock_Click(object sender, EventArgs e)
@@ -864,20 +866,24 @@ namespace gInk
             if (gpPenWidth_MouseOn)
             {
                 int x = e.X + pboxPenWidthIndicator.Left;
+
                 if (x < 10 || gpPenWidth.Width - x < 10)
                     return;
 
                 Root.GlobalPenWidth = x * x / 30;
+                SetPenTipCursor();
+                //Debug.WriteLine(string.Format("Root.GlobalPenWidth:{0}", Root.GlobalPenWidth));
                 pboxPenWidthIndicator.Left = x - pboxPenWidthIndicator.Width / 2;
                 IC.DefaultDrawingAttributes.Width = Root.GlobalPenWidth;
                 Root.UponButtonsUpdate |= 0x2;
+
             }
         }
 
         private void pboxPenWidthIndicator_MouseUp(object sender, MouseEventArgs e)
         {
             //if (Root.CanvasCursor == 1)
-            //	SetPenTipCursor();
+            //SetPenTipCursor();
 
             Root.gpPenWidthVisible = false;
             Root.UponSubPanelUpdate = true;
@@ -886,20 +892,28 @@ namespace gInk
 
         private void SetPenTipCursor()
         {
-            Bitmap bitmaptip = (Bitmap)Properties.Resources._null.Clone();
-            int width = Properties.Resources._null.Width;
-            int height = Properties.Resources._null.Height;
-            Graphics g = Graphics.FromImage(bitmaptip);
+            Bitmap bitmaptip;
+            int width;
+            int height;
+            Graphics g;
             DrawingAttributes dda = IC.DefaultDrawingAttributes;
             Brush cbrush;
             Point widt;
             if (!Root.EraserMode)
             {
+                bitmaptip = (Bitmap)Properties.Resources._null.Clone();
+                width = Properties.Resources._null.Width;
+                height = Properties.Resources._null.Height;
+                g = Graphics.FromImage(bitmaptip);
                 cbrush = new SolidBrush(IC.DefaultDrawingAttributes.Color);
                 widt = new Point((int)IC.DefaultDrawingAttributes.Width, 0);
             }
             else
             {
+                bitmaptip = (Bitmap)Properties.Resources.rubber.Clone();
+                width = Properties.Resources.rubber.Width;
+                height = Properties.Resources.rubber.Height;
+                g = Graphics.FromImage(bitmaptip);
                 cbrush = new SolidBrush(Color.Black);
                 widt = new Point(60, 0);
             }
@@ -912,8 +926,7 @@ namespace gInk
             int PhysicalScreenHeight = WinApi.GetDeviceCaps(screenDc, DESKTOPVERTRES);
             float ScreenScalingFactor = PhysicalScreenHeight / (float)LogicalScreenHeight;
             WinApi.ReleaseDC(IntPtr.Zero, screenDc);
-
-            int dia = Math.Max((int)(widt.X * ScreenScalingFactor), 3);
+            int dia = Math.Max((int)(widt.X * ScreenScalingFactor), 2);
             g.FillEllipse(cbrush, (width - dia) / 2, (height - dia) / 2, dia, dia);
             if (dia <= 5)
             {
